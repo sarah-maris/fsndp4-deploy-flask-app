@@ -31,10 +31,10 @@ Parameters:
   GitHubToken:
     Type: String
     NoEcho: true
-    Description: GitHub API token - see https://github.com/blog/1509-personal-api-tokens
+    Description: GitHub API token
     MinLength: 3
     MaxLength: 100
-    ConstraintDescription: GitHub API token - see https://github.com/blog/1509-personal-api-tokens
+    ConstraintDescription: GitHub API token
 
   GitHubUser:
     Type: String
@@ -150,7 +150,7 @@ Resources:
               response['Data'] = {"Message": "Resource creation failed"}
 
             response_body = json.dumps(response)
-            headers = {'content-type': '', "content-length": len(response_body) }
+            headers = {'content-type': '', "content-length": str(len(response_body)) }
             put_response = requests.put(event['ResponseURL'], headers=headers, data=response_body)
             return response
 
